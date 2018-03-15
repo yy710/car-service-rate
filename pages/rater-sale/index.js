@@ -3,17 +3,29 @@ var rateMap = new Map([[1, "非常不满意"], [2, "不满意"], [3, "一般"], 
 
 Page({
   data: {
-    rate: { id: 0, text: '' }
+    bcolor:'',
+    rate: { id: 0, text: '' },
+    checkbox: [
+      ["接待不及时", "服务态度恶劣"],
+      ["费用解释不清楚", "未提醒注意事项"],
+      ["业务生疏", "随车工具及备件缺失"],
+      ["未做功能操作演示", "验车交车不认真"],
+      ["不介绍售后服务", "无人跟踪回访"]
+    ]
   },
   handleChange: function (e) {
     this.setData({
       rate: { id: e.detail.value, text: rateMap.get(e.detail.value) }
     })
   },
-  test: function (e) {
+  clickCheckbox: function (e) {
     console.log(e);
-    if(e.currentTarget.id === "2")console.log("ok!");
+    if (e.currentTarget.id === "2") console.log("ok!");
   },
+  submit: function (e) {
+
+  },
+
   onLoad: function () {
 
   },
