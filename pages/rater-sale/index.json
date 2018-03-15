@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "销售客户满意度调查",
+  "usingComponents": {
+    "multiple-rate": "../../components/multiple-rate/multiple-rate"
+  }
+}

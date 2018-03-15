@@ -1,0 +1,62 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">满意度调查</view>
+    <view class="page__desc">请对我们的销售顾问做出评价</view>
+  </view>
+  <view class="page__bd page__bd_spacing page__desc">
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="placeholder">
+          <multiple-rate bindchange="handleChange"></multiple-rate>
+        </view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="placeholder">
+          <text style='color: red;'>{{ rate.text }}</text>
+        </view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="placeholder">接待不及时</view>
+      </view>
+      <view class="weui-flex__item" id="2" data-check="box2" data-cc="34353" bindtap='test'>
+        <view class="placeholder">服务态度恶劣</view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item" id="3" bindtap='test'>
+        <view class="placeholder">费用解释不清楚</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">未提醒注意事项</view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="placeholder">业务生疏</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">随车工具及备件缺失</view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="placeholder">未做功能操作演示</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">验车交车不认真</view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="placeholder">不介绍售后服务</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">无人跟踪回访</view>
+      </view>
+    </view>
+  </view>
+</view>
