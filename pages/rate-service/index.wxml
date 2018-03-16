@@ -1,0 +1,47 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">满意度调查</view>
+    <view class="page__desc">请对我们的销售顾问做出评价</view>
+  </view>
+  <form report-submit='{{true}}' bindsubmit='submitRate' name="rateForm">
+    <view class="page__bd page__bd_spacing page__desc">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            <multiple-rate bindchange="handleChange"></multiple-rate>
+          </view>
+        </view>
+      </view>
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            <text style='color: red;'>{{ rate.text }}</text>
+          </view>
+        </view>
+      </view>
+      <checkbox-group bindchange="checkboxChange" name="rateCheckbox">
+        <view class="weui-flex" wx:for="{{checkbox}}" wx:for-item="flex" wx:for-index="idx">
+          <view class="weui-flex__item" wx:for="{{flex}}">
+            <view class="placeholder">
+              <checkbox value="{{item}}">{{item}}</checkbox>
+            </view>
+          </view>
+        </view>
+      </checkbox-group>
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            <input class="weui-input" placeholder="其他想说的请告诉我们..." name="rateInput" />
+          </view>
+        </view>
+      </view>
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">
+            <button class="weui-btn" type="primary" style='font-size:14px;' form-type='submit'>匿名提交</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </form>
+</view>

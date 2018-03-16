@@ -1,6 +1,8 @@
 {
   "pages":[
-    "pages/rater-sale/index",
+    "pages/rate-sale/index",
+    "pages/rate-service/index",
+    "pages/column/column",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -24,16 +26,22 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/rater-sale/index",
+        "pagePath": "pages/rate-sale/index",
         "iconPath": "images/icon_normal.png",
         "selectedIconPath": "images/icon_pressed.png",
         "text": "销售满意度"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/rate-service/index",
         "iconPath": "images/icon_normal.png",
         "selectedIconPath": "images/icon_pressed.png",
         "text": "售后满意度"
+      },
+      {
+        "pagePath": "pages/column/column",
+        "iconPath": "images/icon_normal.png",
+        "selectedIconPath": "images/icon_pressed.png",
+        "text": "查看结果"
       }
     ]
   },
