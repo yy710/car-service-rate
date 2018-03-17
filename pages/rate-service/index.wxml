@@ -1,7 +1,7 @@
 <view class="page">
   <view class="page__hd">
     <view class="page__title">满意度调查</view>
-    <view class="page__desc">请对我们的销售顾问做出评价</view>
+    <view class="page__desc">请对我们的服务顾问做出评价</view>
   </view>
   <form report-submit='{{true}}' bindsubmit='submitRate' name="rateForm">
     <view class="page__bd page__bd_spacing page__desc">
@@ -23,7 +23,7 @@
         <view class="weui-flex" wx:for="{{checkbox}}" wx:for-item="flex" wx:for-index="idx">
           <view class="weui-flex__item" wx:for="{{flex}}">
             <view class="placeholder">
-              <checkbox value="{{item}}">{{item}}</checkbox>
+              <checkbox value="{{item}}" checked='{{false}}'>{{item}}</checkbox>
             </view>
           </view>
         </view>

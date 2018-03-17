@@ -52,6 +52,7 @@ Page({
   submitRate: function (e) {
     var sendData = e.detail.value;
     sendData.star = this.data.rate;
+    sendData.respondents = "dkSale"
     console.log("sendData: ", sendData);
 
     if (sendData.star.text === '') {

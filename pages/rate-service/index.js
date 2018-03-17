@@ -52,6 +52,7 @@ Page({
   submitRate: function (e) {
     var sendData = e.detail.value;
     sendData.star = this.data.rate;
+    sendData.respondents = "dkService"
     console.log("sendData: ", sendData);
 
     if (sendData.star.text === '') {
@@ -81,6 +82,13 @@ Page({
               }
             })
           }
+        },
+        fail: function () {
+          wx.showToast({
+            title: '系统繁忙，请稍后再试！',
+            icon: 'fail',
+            duration: 2000
+          })
         }
       })
     }
