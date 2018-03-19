@@ -89,7 +89,7 @@ Page({
             })
           } else {
             wx.showModal({
-              title: '系统繁忙，请稍后再试...',
+              title: '系统繁忙，请你稍后再试...',
               content: '感谢你的参与！'
             })
           }

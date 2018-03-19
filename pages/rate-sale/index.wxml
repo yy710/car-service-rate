@@ -19,15 +19,28 @@
           </view>
         </view>
       </view>
+
       <checkbox-group bindchange="checkboxChange" name="rateCheckbox">
-        <view class="weui-flex" wx:for="{{checkbox}}" wx:for-item="flex" wx:for-index="idx" wx:key="">
-          <view class="weui-flex__item" wx:for="{{flex}}" wx:key="">
+        <view class="weui-flex wux-filterbar__groups" wx:for="{{checkbox}}" wx:for-item="flex" wx:for-index="idx" wx:key="">
+          <view class="weui-flex__item wux-filterbar__group" wx:for="{{flex}}" wx:key="">
             <view class="placeholder">
-              <checkbox value="{{item}}">{{item}}</checkbox>
+              <checkbox value="{{item}}" class="wux-filterbar__check" checked="{{}}">{{item}}</checkbox>
             </view>
           </view>
         </view>
       </checkbox-group>
+
+      <checkbox-group name="{{ p.value }}" bindchange="{{ onCheckboxChange }}" data-parent-index="{{ index }}" data-index="{{ pIndex }}" data-item="{{ p }}" wx:else="{{ p.type === 'checkbox' }}">
+        <view class="wux-filterbar__groups">
+          <block wx:for="{{ p.children }}" wx:for-item="g" wx:key="">
+            <view class="wux-filterbar__group">
+              <checkbox class="wux-filterbar__check" value="{{ g.value }}" checked="{{ g.checked }}" />
+              <view class="wux-filterbar__btn {{ g.checked ? 'wux-filterbar__btn--checked' : '' }}">{{ g.label }}</view>
+            </view>
+          </block>
+        </view>
+      </checkbox-group>
+
       <view class="weui-flex">
         <view class="weui-flex__item">
           <view class="placeholder">
