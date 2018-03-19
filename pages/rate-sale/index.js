@@ -50,6 +50,7 @@ Page({
 
   //submit data to server
   submitRate: function (e) {
+
     var sendData = e.detail.value;
     sendData.star = this.data.rate;
     sendData.respondents = "dkSale"
@@ -62,6 +63,9 @@ Page({
         duration: 2000
       })
     } else {
+      //notice user that is sunbmiting data
+      wx.showLoading({ title: '正在提交数据...' });
+
       wx.request({
         url: 'https://www.xingshenxunjiechuxing.com/rate/dksale',
         data: { data: sendData },
@@ -69,6 +73,8 @@ Page({
         header: { 'content-type': 'application/json' },// 默认值
         success: function (res) {
           console.log(res.data);
+          wx.hideLoading();
+
           if (res.data.id === 1) {
             wx.showModal({
               title: '提交成功',
@@ -81,7 +87,19 @@ Page({
                 }
               }
             })
+          } else {
+            wx.showModal({
+              title: '系统繁忙，请稍后再试...',
+              content: '感谢你的参与！'
+            })
           }
+        },
+        fail: function () {
+          wx.hideLoading();
+          wx.showModal({
+            title: '系统繁忙，请稍后再试...',
+            content: '感谢你的参与！'
+          })
         }
       })
     }
