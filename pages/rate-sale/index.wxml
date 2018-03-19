@@ -20,8 +20,8 @@
         </view>
       </view>
       <checkbox-group bindchange="checkboxChange" name="rateCheckbox">
-        <view class="weui-flex" wx:for="{{checkbox}}" wx:for-item="flex" wx:for-index="idx">
-          <view class="weui-flex__item" wx:for="{{flex}}">
+        <view class="weui-flex" wx:for="{{checkbox}}" wx:for-item="flex" wx:for-index="idx" wx:key="">
+          <view class="weui-flex__item" wx:for="{{flex}}" wx:key="">
             <view class="placeholder">
               <checkbox value="{{item}}">{{item}}</checkbox>
             </view>
