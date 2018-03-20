@@ -4,5 +4,5 @@
 		{{chartTitle}}
 	</view>
     <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
-    <view style="text-align:center">点击数据每一项查看详情</view>
+     <button class="weui-btn mini-btn" type="primary" size="mini" bindtap='downloadXlsx'>下载并打开详细报表</button>
 </view>

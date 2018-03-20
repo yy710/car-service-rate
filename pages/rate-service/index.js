@@ -1,35 +1,45 @@
 var app = getApp()
 var rateMap = new Map([[1, "非常不满意"], [2, "不满意"], [3, "一般"], [4, "满意"], [5, "非常满意"]]);
 var checkbox4 = [
-  ["接待不及时", "服务态度恶劣"],
-  ["注意事项未提前告知", "保养费用故障诊断不准确"],
-  ["维修保养耗时过长", "费用解释不清楚"],
-  ["故障不能一次排除", "配件不齐全"],
-  ["不遵守预约服务", "无人跟踪回访"]
+  [{ value: "接待不及时", checked: false }, { value: "服务态度恶劣", checked: false }],
+  [{ value: "费用解释不清楚", checked: false }, { value: "注意事项未提前告知", checked: false }],
+  [{ value: "保养费用故障诊断不准确", checked: false }, { value: "维修保养耗时过长", checked: false }],
+  [{ value: "故障不能一次排除", checked: false }, { value: "配件不齐全", checked: false }],
+  [{ value: "不遵守预约服务", checked: false }, { value: "无人跟踪回访", checked: false }]
 ];
 var checkbox5 = [
-  ["细致周到", "有求必应"],
-  ["技术精湛", "专业高效"]
+  [{ value: "细致周到", checked: false }, { value: "有求必应", checked: false }],
+  [{ value: "技术精湛", checked: false }, { value: "专业高效", checked: false }]
 ];
+var currentCheckboxs = checkbox4;
 
 Page({
   data: {
     rate: { id: 0, text: '' },
-    checkbox: checkbox4
+    checkbox: currentCheckboxs
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '(服务)用户满意度调查',
+      path: '/pages/rate-service/index'
+    }
   },
 
   // event for star changed
   handleChange: function (e) {
     var r = e.detail.value;
     if (r === 5) {
+      currentCheckboxs = checkbox5;
       this.setData({
         rate: { id: r, text: rateMap.get(r) },
-        checkbox: checkbox5
+        checkbox: currentCheckboxs
       });
     } else {
+      currentCheckboxs = checkbox4;
       this.setData({
         rate: { id: r, text: rateMap.get(r) },
-        checkbox: checkbox4
+        checkbox: currentCheckboxs
       });
     }
   },
@@ -46,13 +56,35 @@ Page({
   // event for checkbox-group changed
   checkboxChange: function (e) {
     console.log(e);
+
+    let checkedValues = e.detail.value;
+
+    checkbox4 = checkbox4.map(item1 => {
+      item1.map(item2 => {
+        item2.checked = checkedValues.includes(item2.value);
+        return item2;
+      });
+      return item1;
+    });
+
+    checkbox5 = checkbox5.map(item1 => {
+      item1.map(item2 => {
+        item2.checked = checkedValues.includes(item2.value);
+        return item2;
+      });
+      return item1;
+    });
+
+    this.setData({ checkbox: currentCheckboxs });
   },
 
   //submit data to server
   submitRate: function (e) {
+
     var sendData = e.detail.value;
     sendData.star = this.data.rate;
-    sendData.respondents = "dkService"
+    sendData.respondents = "dkservice"
+    sendData.sid = 0;
     console.log("sendData: ", sendData);
 
     if (sendData.star.text === '') {
@@ -62,6 +94,9 @@ Page({
         duration: 2000
       })
     } else {
+      //notice user that is sunbmiting data
+      wx.showLoading({ title: '正在提交数据...' });
+
       wx.request({
         url: 'https://www.xingshenxunjiechuxing.com/rate/dksale',
         data: { data: sendData },
@@ -69,6 +104,8 @@ Page({
         header: { 'content-type': 'application/json' },// 默认值
         success: function (res) {
           console.log(res.data);
+          wx.hideLoading();
+
           if (res.data.id === 1) {
             wx.showModal({
               title: '提交成功',
@@ -81,13 +118,18 @@ Page({
                 }
               }
             })
+          } else {
+            wx.showModal({
+              title: '系统繁忙，请你稍后再试...',
+              content: '感谢你的参与！'
+            })
           }
         },
         fail: function () {
-          wx.showToast({
-            title: '系统繁忙，请稍后再试！',
-            icon: 'fail',
-            duration: 2000
+          wx.hideLoading();
+          wx.showModal({
+            title: '系统繁忙，请稍后再试...',
+            content: '感谢你的参与！'
           })
         }
       })

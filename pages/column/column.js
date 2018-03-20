@@ -30,6 +30,50 @@ Page({
     chartTitle: '星级评定平均分',
     isMainChartDisplay: true
   },
+
+  downloadXlsx: function(){
+    const downloadTask = wx.downloadFile({
+      url: 'https://www.xingshenxunjiechuxing.com/rate/get-xlsx',
+      success: function (res) {
+        console.log(res);
+
+        /*
+        var tempFilePath = res.tempFilePath
+        wx.saveFile({
+          tempFilePath: tempFilePath,
+          success: function (res) {
+            console.log(res);
+            var savedFilePath = res.savedFilePath;
+          }
+        })
+        */
+
+        // open doc
+        var filePath = res.tempFilePath;
+        wx.openDocument({
+          filePath: filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+          }
+        });
+        
+      }
+    });
+
+    downloadTask.onProgressUpdate((res) => {
+      console.log('下载进度', res.progress)
+      console.log('已经下载的数据长度', res.totalBytesWritten)
+      console.log('预期需要下载的数据总长度', res.totalBytesExpectedToWrite)
+    });
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '用户满意度调查结果',
+      path: '/pages/column/column'
+    }
+  },
+
   backToMainChart: function () {
     this.setData({
       chartTitle: chartData.main.title,
@@ -112,7 +156,7 @@ Page({
   onShow: function () {
     var that = this;
     wx.request({
-      url: 'https://www.xingshenxunjiechuxing.com/rate/queryStar',
+      url: 'https://www.xingshenxunjiechuxing.com/rate/query-star',
       data: { respondents: "sale" },
       dataType: "json",
       header: { 'content-type': 'application/json' },// 默认值
@@ -120,7 +164,7 @@ Page({
         console.log("server said: ", res.data);
 
         res.data.data.forEach(function (item) {
-          if (item._id === "dkSale") {
+          if (item._id === "dksale") {
             chartData.main.data[0] = item.avg;
           }
         });

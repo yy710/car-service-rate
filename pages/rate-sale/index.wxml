@@ -1,13 +1,14 @@
 <view class="page">
   <view class="page__hd">
-    <view class="page__title">满意度调查</view>
+    <view class="page__title">销售满意度调查</view>
     <view class="page__desc">请对我们的销售顾问做出评价</view>
+   
   </view>
   <form report-submit='{{true}}' bindsubmit='submitRate' name="rateForm">
     <view class="page__bd page__bd_spacing page__desc">
       <view class="weui-flex">
         <view class="weui-flex__item">
-          <view class="placeholder">
+          <view class="placeholder2">
             <multiple-rate bindchange="handleChange"></multiple-rate>
           </view>
         </view>
@@ -24,26 +25,16 @@
         <view class="weui-flex wux-filterbar__groups" wx:for="{{checkbox}}" wx:for-item="flex" wx:for-index="idx" wx:key="">
           <view class="weui-flex__item wux-filterbar__group" wx:for="{{flex}}" wx:key="">
             <view class="placeholder">
-              <checkbox value="{{item}}" class="wux-filterbar__check" checked="{{}}">{{item}}</checkbox>
+              <checkbox value="{{item.value}}" class="wux-filterbar__check" checked="{{item.checked}}"></checkbox>
+              <view class="wux-filterbar__btn {{ item.checked?'wux-filterbar__btn--checked' : '' }}">{{item.value}}</view>
             </view>
           </view>
         </view>
       </checkbox-group>
 
-      <checkbox-group name="{{ p.value }}" bindchange="{{ onCheckboxChange }}" data-parent-index="{{ index }}" data-index="{{ pIndex }}" data-item="{{ p }}" wx:else="{{ p.type === 'checkbox' }}">
-        <view class="wux-filterbar__groups">
-          <block wx:for="{{ p.children }}" wx:for-item="g" wx:key="">
-            <view class="wux-filterbar__group">
-              <checkbox class="wux-filterbar__check" value="{{ g.value }}" checked="{{ g.checked }}" />
-              <view class="wux-filterbar__btn {{ g.checked ? 'wux-filterbar__btn--checked' : '' }}">{{ g.label }}</view>
-            </view>
-          </block>
-        </view>
-      </checkbox-group>
-
       <view class="weui-flex">
         <view class="weui-flex__item">
-          <view class="placeholder">
+          <view class="placeholder2">
             <input class="weui-input" placeholder="其他想说的请告诉我们..." name="rateInput" />
           </view>
         </view>
@@ -52,6 +43,7 @@
         <view class="weui-flex__item">
           <view class="placeholder">
             <button class="weui-btn" type="primary" style='font-size:14px;' form-type='submit'>匿名提交</button>
+              <button class="weui-btn mini-btn" size="mini" open-type="share">转发此页</button>
           </view>
         </view>
       </view>

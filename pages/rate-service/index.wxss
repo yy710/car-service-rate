@@ -1,15 +1,5 @@
 /* pages/rater/index.wxss */
 
-.placeholder {
-  margin: 5px;
-  padding: 0 10px;
-  text-align: center;
-  background-color: #eee;
-  height: 2.3em;
-  line-height: 2.3em;
-  color: #000;
-}
-
 .click-submit {
   background-color: lightgreen;
 }
