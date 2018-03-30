@@ -1,11 +1,9 @@
 var app = getApp()
 var rateMap = new Map([[1, "非常不满意"], [2, "不满意"], [3, "一般"], [4, "满意"], [5, "非常满意"]]);
 var checkbox4 = [
-  [{ value: "接待不及时", checked: false }, { value: "服务态度恶劣", checked: false }],
-  [{ value: "费用解释不清楚", checked: false }, { value: "注意事项未提前告知", checked: false }],
-  [{ value: "保养费用故障诊断不准确", checked: false }, { value: "维修保养耗时过长", checked: false }],
-  [{ value: "故障不能一次排除", checked: false }, { value: "配件不齐全", checked: false }],
-  [{ value: "不遵守预约服务", checked: false }, { value: "无人跟踪回访", checked: false }]
+  [{ value: "服务顾问态度良好", checked: false }, { value: " 维修保养项目解释清楚", checked: false }],
+  [{ value: "维修保养耗时合理", checked: false }, { value: "与您一同检查完成项目", checked: false }],
+  [{ value: "您反映的问题都已解决", checked: false }, { value: " 收银员服务态度良好", checked: false }]
 ];
 var checkbox5 = [
   [{ value: "细致周到", checked: false }, { value: "有求必应", checked: false }],
@@ -16,7 +14,8 @@ var currentCheckboxs = checkbox4;
 Page({
   data: {
     rate: { id: 0, text: '' },
-    checkbox: currentCheckboxs
+    checkbox: currentCheckboxs,
+    showCheckboxs: false
   },
 
   onShareAppMessage: function () {
@@ -39,7 +38,8 @@ Page({
       currentCheckboxs = checkbox4;
       this.setData({
         rate: { id: r, text: rateMap.get(r) },
-        checkbox: currentCheckboxs
+        checkbox: currentCheckboxs,
+        showCheckboxs: true
       });
     }
   },

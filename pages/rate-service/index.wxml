@@ -1,7 +1,7 @@
 <view class="page">
   <view class="page__hd">
     <view class="page__title">售后满意度调查</view>
-    <view class="page__desc">请对我们的服务顾问做出评价</view>
+    <view class="page__desc">请对我们的售后服务做出评价</view>
   </view>
   <form report-submit='{{true}}' bindsubmit='submitRate' name="rateForm">
     <view class="page__bd page__bd_spacing page__desc">
@@ -20,7 +20,7 @@
         </view>
       </view>
     
-  <checkbox-group bindchange="checkboxChange" name="rateCheckbox">
+  <checkbox-group bindchange="checkboxChange" name="rateCheckbox" wx:if="{{showCheckboxs}}">
         <view class="weui-flex wux-filterbar__groups" wx:for="{{checkbox}}" wx:for-item="flex" wx:for-index="idx" wx:key="">
           <view class="weui-flex__item wux-filterbar__group" wx:for="{{flex}}" wx:key="">
             <view class="placeholder">
@@ -41,7 +41,7 @@
       <view class="weui-flex">
         <view class="weui-flex__item">
           <view class="placeholder">
-            <button class="weui-btn" type="primary" style='font-size:14px;' form-type='submit'>匿名提交</button>
+            <button class="weui-btn" type="primary" style='font-size:14px;' form-type='submit'>提交</button>
             <button class="weui-btn mini-btn" size="mini" open-type="share">转发此页</button>
           </view>
         </view>
