@@ -2,7 +2,7 @@
   <view class="page__hd">
     <view class="page__title">销售满意度调查</view>
     <view class="page__desc">请对我们的销售服务做出评价</view>
-   
+
   </view>
   <form report-submit='{{true}}' bindsubmit='submitRate' name="rateForm">
     <view class="page__bd page__bd_spacing page__desc">
@@ -32,6 +32,24 @@
         </view>
       </checkbox-group>
 
+      <radio-group name="rateRadio" bindchange="onRadioChange" wx:if="{{showCheckboxs}}">
+        <view class="weui-flex wux-filterbar__groups">
+          <view class="weui-flex__item wux-filterbar__group">
+            <view style="color:red;text-align: center;margin-top:5px">
+              <text>您是否愿意向您的朋友推荐我们的服务？</text>
+            </view>
+          </view>
+        </view>
+        <view class="weui-flex wux-filterbar__groups">
+          <view class="weui-flex__item wux-filterbar__group" wx:for="{{radios}}" wx:key="">
+            <view class="placeholder">
+              <radio class="wux-filterbar__radio" value="{{ item.value }}" checked="{{ item.checked }}" />
+              <view class="wux-filterbar__btn {{ item.checked ? 'wux-filterbar__btn--checked' : '' }}">{{ item.label }}</view>
+            </view>
+          </view>
+        </view>
+      </radio-group>
+
       <view class="weui-flex">
         <view class="weui-flex__item">
           <view class="placeholder2">
@@ -43,7 +61,7 @@
         <view class="weui-flex__item">
           <view class="placeholder">
             <button class="weui-btn" type="primary" style='font-size:14px;' form-type='submit'>提交</button>
-              <button class="weui-btn mini-btn" size="mini" open-type="share">转发此页</button>
+            <button class="weui-btn mini-btn" size="mini" open-type="share">转发此页</button>
           </view>
         </view>
       </view>

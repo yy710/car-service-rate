@@ -16,6 +16,7 @@ Page({
   data: {
     rate: { id: 0, text: '' },
     checkbox: currentCheckboxs,
+    radios: [{ value: "愿意推荐", checked: false, label: "是" }, { value: "不愿意推荐", checked: false, label: "否" }],
     showCheckboxs: false,
   },
 
@@ -54,6 +55,17 @@ Page({
     //this.setData({"bcolor[id]": 'green', "tcolor[id]": 'white'});
   },
 
+  onRadioChange: function (e) {
+    console.log("on radio event: ", e);
+    let radios = this.data.radios.map(item => {
+      item.checked = item.value === e.detail.value ? true : false;
+      return item;
+    });
+
+    //console.log("new radios: ", radios);
+    this.setData({ radios: radios });
+  },
+
   // event for checkbox-group changed
   checkboxChange: function (e) {
     console.log(e);
@@ -62,6 +74,7 @@ Page({
 
     checkbox4 = checkbox4.map(item1 => {
       item1.map(item2 => {
+        //set checked flag for click event
         item2.checked = checkedValues.includes(item2.value);
         return item2;
       });
@@ -76,11 +89,11 @@ Page({
       return item1;
     });
 
-    this.setData({checkbox: currentCheckboxs});
+    this.setData({ checkbox: currentCheckboxs });
   },
 
   //submit data to server
-  submitRate: function(e) {
+  submitRate: function (e) {
 
     var sendData = e.detail.value;
     sendData.star = this.data.rate;
