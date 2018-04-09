@@ -35,8 +35,8 @@
       <radio-group name="rateRadio" bindchange="onRadioChange" wx:if="{{showCheckboxs}}">
         <view class="weui-flex wux-filterbar__groups">
           <view class="weui-flex__item wux-filterbar__group">
-            <view style="color:red;text-align: center;margin-top:5px">
-              <text>您是否愿意向您的朋友推荐我们的服务？</text>
+            <view style="color:red;text-align: center;margin-top:5px;font-size:14px">
+              <text>您是否会向您的朋友推荐我们？</text>
             </view>
           </view>
         </view>

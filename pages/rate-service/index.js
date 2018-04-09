@@ -15,6 +15,7 @@ Page({
   data: {
     rate: { id: 0, text: '' },
     checkbox: currentCheckboxs,
+    radios: [{ value: "愿意推荐", checked: false, label: "是" }, { value: "不愿意推荐", checked: false, label: "否" }],
     showCheckboxs: false
   },
 
@@ -51,6 +52,17 @@ Page({
     //checkArr.push(id);
     //wx.createSelectorQuery().select('#the-id');
     //this.setData({"bcolor[id]": 'green', "tcolor[id]": 'white'});
+  },
+
+  onRadioChange: function (e) {
+    console.log("on radio event: ", e);
+    let radios = this.data.radios.map(item => {
+      item.checked = item.value === e.detail.value ? true : false;
+      return item;
+    });
+
+    //console.log("new radios: ", radios);
+    this.setData({ radios: radios });
   },
 
   // event for checkbox-group changed

@@ -17,7 +17,7 @@ Page({
     rate: { id: 0, text: '' },
     checkbox: currentCheckboxs,
     radios: [{ value: "愿意推荐", checked: false, label: "是" }, { value: "不愿意推荐", checked: false, label: "否" }],
-    showCheckboxs: false,
+    showCheckboxs: false
   },
 
   onShareAppMessage: function () {
