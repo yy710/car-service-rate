@@ -1,8 +1,6 @@
 //获取应用实例
 const app = getApp();
-let wafer = require('../../components/wafer-client-sdk/index.js');
-// 设置登录地址
-wafer.setLoginUrl('https://www.xingshenxunjiechuxing.com/rate/login');
+let wafer = app.globalData.wafer;
 
 Page({
   data: {
@@ -18,8 +16,8 @@ Page({
     })
   },
   onLoad: function () {
-
     wafer.request({
+      login: true,
       url: 'https://www.xingshenxunjiechuxing.com/rate/me',
       success: function (response) {
         console.log(response);

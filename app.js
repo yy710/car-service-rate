@@ -1,11 +1,11 @@
-//app.js
+let wafer = require('./components/wafer-client-sdk/index.js');
+
 App({
   onLaunch: function () {
     let that = this;
-    let wafer = require('./components/wafer-client-sdk/index.js');
-
     // 设置登录地址
     wafer.setLoginUrl('https://www.xingshenxunjiechuxing.com/rate/login');
+    this.globalData.wafer = wafer;
     wafer.login({
       success: function (userInfo) {
         console.log('登录成功', userInfo);
