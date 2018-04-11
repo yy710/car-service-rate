@@ -1,14 +1,16 @@
-var app = getApp()
+var app = getApp();
+var wafer = app.globalData.wafer;
 var rateMap = new Map([[1, "非常不满意"], [2, "不满意"], [3, "一般"], [4, "满意"], [5, "非常满意"]]);
 var checkbox4 = [
-  [{ value: "服务顾问态度良好", checked: false }, { value: " 维修保养项目解释清楚", checked: false }],
-  [{ value: "维修保养耗时合理", checked: false }, { value: "与您一同检查完成项目", checked: false }],
-  [{ value: "您反映的问题都已解决", checked: false }, { value: " 收银员服务态度良好", checked: false }]
+  [{ value: "销售顾问服务态度良好", checked: false }, { value: "产品与费用介绍详细", checked: false }],
+  [{ value: "交车时与您一同验车", checked: false }, { value: "提醒注意事项介绍售后服务", checked: false }],
+  [{ value: "您提出的问题都已得到解答", checked: false }, { value: "收银员服务态度良好", checked: false }]
 ];
 var checkbox5 = [
-  [{ value: "细致周到", checked: false }, { value: "有求必应", checked: false }],
-  [{ value: "技术精湛", checked: false }, { value: "专业高效", checked: false }]
+  [{ value: "礼貌体贴", checked: false }, { value: "热情周到", checked: false }],
+  [{ value: "专业高效", checked: false }, { value: "不厌其烦", checked: false }]
 ];
+
 var currentCheckboxs = checkbox4;
 
 Page({
@@ -21,8 +23,8 @@ Page({
 
   onShareAppMessage: function () {
     return {
-      title: '(服务)用户满意度调查',
-      path: '/pages/rate-service/index'
+      title: '(销售)用户满意度调查',
+      path: '/pages/rate-sale/index'
     }
   },
 
@@ -73,6 +75,7 @@ Page({
 
     checkbox4 = checkbox4.map(item1 => {
       item1.map(item2 => {
+        //set checked flag for click event
         item2.checked = checkedValues.includes(item2.value);
         return item2;
       });
@@ -95,7 +98,7 @@ Page({
 
     var sendData = e.detail.value;
     sendData.star = this.data.rate;
-    sendData.respondents = "dkservice"
+    sendData.respondents = "dksale";
     sendData.sid = 0;
     console.log("sendData: ", sendData);
 
@@ -109,7 +112,7 @@ Page({
       //notice user that is sunbmiting data
       wx.showLoading({ title: '正在提交数据...' });
 
-      wx.request({
+      wafer.request({
         url: 'https://www.xingshenxunjiechuxing.com/rate/dksale',
         data: { data: sendData },
         dataType: "json",
