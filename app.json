@@ -3,7 +3,7 @@
     "pages/rate-sale/rate-sale",
     "pages/rate-service/rate-service",
     "pages/column/column",
-    "pages/logs/logs",
+    "pages/phone-form/phone-form",
     "pages/my/my"
   ],
   "window": {

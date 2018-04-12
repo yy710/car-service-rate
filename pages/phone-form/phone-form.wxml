@@ -1,0 +1,36 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__hd">
+    <view class="page__title">请填写会员资料</view>
+    <view class="page__desc">
+      <text style="color:red">红色字</text>为必填项，我们推荐你填写所有信息以方便兑换奖品和服务</view>
+  </view>
+  <form report-submit="true" bindsubmit="submitUserInfo">
+    <view class="page_bd">
+      <view class="weui-cells__title">请确认以下信息真实有效</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input class="weui-input" name="name" placeholder="请输入姓名" value='{{name}}' />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+          <view class="weui-cell__bd">
+            <input class="weui-input" style='color:red' id="inputPhone" name="phone" type="number" bindinput='getPhone' placeholder="请输入手机号" value="{{phone}}" />
+          </view>
+          <view class="weui-cell__ft" wx:if="{{true}}">
+            <view class="weui-vcode-btn" hidden='{{hiddenGetVerifyCode}}' bindtap='getVerifyCode'>{{vCodeText || '获取验证码'}}</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input class="weui-input" name="verifyCode" value="{{vCode}}" bindinput='inputVerifyCode' hidden='{{hiddenVerifyCodeInput}}' placeholder="请输入验证码" />
+          </view>
+        </view>
+      </view>
+      <view class="weui-cells weui-cells_after-title"></view>
+    </view>
+    <view class="page__bd">
+      <button type="primary" form-type="submit" class="weui-btn" disabled='{{disabledSubmit}}'>领取50迪坤币</button>
+    </view>
+  </form>
+</view>

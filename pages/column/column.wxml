@@ -1,8 +1,24 @@
 <view class="container">
-	<view class="title">
-		<view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">返回</view>
-		{{chartTitle}}
-	</view>
-    <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
-     <button class="weui-btn mini-btn" type="primary" size="mini" bindtap='downloadXlsx'>下载并打开详细报表</button>
+  <view class="weui-cells weui-cells_after-title" wx:if="{{password || true}}">
+    <form report-submit="{{false}}" bindsubmit="checkout">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__bd">
+          <input class="weui-input" name="pwd" placeholder="请输入查看密码" value='{{name}}' />
+        </view>
+      </view>
+      <view class="page__bd">
+        <button type="primary" form-type="submit" class="weui-btn" disabled='{{disabledSubmit || false}}'>确　　定</button>
+      </view>
+    </form>
+  </view>
+  <block wx:if="{{secret || false}}">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="title">
+        <view wx:if="{{!isMainChartDisplay}}" class="back-btn" bindtap="backToMainChart">返回</view>
+        {{chartTitle}}
+      </view>
+      <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+    </view>
+    <button class="weui-btn mini-btn" type="primary" size="mini" bindtap='downloadXlsx' disabled='{{true}}'>下载并打开详细报表</button>
+  </block>
 </view>

@@ -4,7 +4,7 @@ let wafer = app.globalData.wafer;
 
 Page({
   data: {
-    motto: '您的可兑换积分：0',
+    motto: '您的可兑换迪坤币：0 个',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -12,7 +12,7 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../phone-form/phone-form'
     })
   },
   onLoad: function () {

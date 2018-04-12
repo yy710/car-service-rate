@@ -1,28 +1,21 @@
 var wxCharts = require('../../utils/wxcharts.js');
 var app = getApp();
+var wafer = app.globalData.wafer;
 var columnChart = null;
 var chartData = {
   main: {
     title: '月度星级评定分数',
-    data: [3, 3.7, 4.2, 4.5],
-    categories: ['3月', '4月', '5月', '6月']
+    data: [3, 3.7, 0, 0],
+    categories: ['3月', '4月']
   },
   sub: [{
     title: '3月调查统计',
-    data: [70, 40, 65, 100, 34, 18, 12, 21, 23, 22],
-    categories: ['接待不及时', '服务态度恶劣', '费用解释不清楚', '未提醒注意事项', '业务生疏', '随车工具及备件缺失', "未做功能操作演示", "验车交车不认真", "不介绍售后服务", "无人跟踪回访"]
+    data: [70, 40, 65, 100, 34, 18],
+    categories: ['销售顾问服务态度良好', '产品与费用介绍详细', '交车时与您一同验车', '提醒注意事项介绍售后服务', '您提出的问题都已得到解答', '收银员服务态度良好']
   }, {
     title: '4月调查统计',
     data: [55, 30, 45, 36, 56, 13],
-    categories: ['接待不及时', '服务态度恶劣', '费用解释不清楚', '未提醒注意事项', '业务生疏', '随车工具及备件缺失', "未做功能操作演示", "验车交车不认真", "不介绍售后服务", "无人跟踪回访"]
-  }, {
-    title: '5月调查统计',
-    data: [76, 45, 32, 74, 54, 35],
-    categories: ['接待不及时', '服务态度恶劣', '费用解释不清楚', '未提醒注意事项', '业务生疏', '随车工具及备件缺失', "未做功能操作演示", "验车交车不认真", "不介绍售后服务", "无人跟踪回访"]
-  }, {
-    title: '6月调查统计',
-    data: [76, 54, 23, 12, 45, 65],
-    categories: ['接待不及时', '服务态度恶劣', '费用解释不清楚', '未提醒注意事项', '业务生疏', '随车工具及备件缺失', "未做功能操作演示", "验车交车不认真", "不介绍售后服务", "无人跟踪回访"]
+    categories: ['销售顾问服务态度良好', '产品与费用介绍详细', '交车时与您一同验车', '提醒注意事项介绍售后服务', '您提出的问题都已得到解答', '收银员服务态度良好']
   }]
 };
 Page({
@@ -31,7 +24,23 @@ Page({
     isMainChartDisplay: true
   },
 
-  downloadXlsx: function(){
+  checkout: function (e) {
+    console.log("checkout: ", e.detail);
+    wafer.request({
+      url: "https://www.xingshenxunjiechuxing.com/rate/checkoutChartPwd",
+      data: e.detail.value,
+      success: respont => {
+        console.log("respont: ", respont);
+        respont.data.allow && this.setData({ password: false, secret: true });
+      }
+    });
+  },
+
+  onLoad: function (options) {
+    //this.setData({ password: true, secret: false });
+  },
+
+  downloadXlsx: function () {
     const downloadTask = wx.downloadFile({
       url: 'https://www.xingshenxunjiechuxing.com/rate/get-xlsx',
       success: function (res) {
@@ -56,7 +65,7 @@ Page({
             console.log('打开文档成功')
           }
         });
-        
+
       }
     });
 
@@ -165,7 +174,7 @@ Page({
 
         res.data.data.forEach(function (item) {
           if (item._id === "dksale") {
-            chartData.main.data[0] = item.avg;
+            chartData.main.data[1] = item.avg;
           }
         });
 
