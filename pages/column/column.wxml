@@ -1,16 +1,18 @@
 <view class="container">
-  <view class="weui-cells weui-cells_after-title" wx:if="{{password || true}}">
-    <form report-submit="{{false}}" bindsubmit="checkout">
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__bd">
-          <input class="weui-input" name="pwd" placeholder="请输入查看密码" value='{{name}}' />
+  <block wx:if="{{password}}">
+    <view class="weui-cells weui-cells_after-title">
+      <form report-submit="{{false}}" bindsubmit="checkout">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input class="weui-input" name="pwd" password="true" placeholder="请输入查看密码" value='{{name}}' />
+          </view>
         </view>
-      </view>
-      <view class="page__bd">
-        <button type="primary" form-type="submit" class="weui-btn" disabled='{{disabledSubmit || false}}'>确　　定</button>
-      </view>
-    </form>
-  </view>
+        <view class="page__bd">
+          <button type="primary" form-type="submit" class="weui-btn" disabled='{{disabledSubmit || false}}'>确　　定</button>
+        </view>
+      </form>
+    </view>
+  </block>
   <block wx:if="{{secret || false}}">
     <view class="weui-cells weui-cells_after-title">
       <view class="title">

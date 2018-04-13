@@ -21,7 +21,8 @@ var chartData = {
 Page({
   data: {
     chartTitle: '星级评定平均分',
-    isMainChartDisplay: true
+    isMainChartDisplay: true,
+    password: true
   },
 
   checkout: function (e) {

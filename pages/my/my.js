@@ -15,12 +15,14 @@ Page({
       url: '../phone-form/phone-form'
     })
   },
-  onLoad: function () {
+  onShow: function () {
+    var that = this;
     wafer.request({
       login: true,
       url: 'https://www.xingshenxunjiechuxing.com/rate/me',
       success: function (response) {
         console.log(response);
+        that.setData({ motto: `您的可兑换迪坤币：${response.data.money} 个` });
       },
       fail: function (err) {
         console.log(err);

@@ -1,4 +1,5 @@
 var Countdown = require('../../utils/countdown.js');
+var rate = require('../../utils/common.js').rate
 var app = getApp();
 var wafer = app.globalData.wafer;
 var phones = []; //已验证用户对应电话列表
@@ -95,8 +96,11 @@ Page({
   },
 
   submitUserInfo: function (e) {
-    var that = this;
-    var sendData = e.detail.value;
+    console.log(e);
+    var sendData = app.globalData.rateSendData;
+    console.log(sendData);
+    sendData.phone = e.detail.value.phone;
+    sendData.verifyCode = e.detail.verifyCode || 0;
     console.log("phone-form/sendData: ", sendData);
 
     if (sendData.phone === '') {
@@ -114,42 +118,6 @@ Page({
       });
       return;
     }
-
-    wafer.request({
-      url: 'https://www.xingshenxunjiechuxing.com/rate/submitUserInfo',
-      data: { data: sendData },
-      dataType: "json",
-      header: { 'content-type': 'application/json' },// 默认值
-      success: function (res) {
-        console.log(res.data);
-        wx.hideLoading();
-
-        if (res.data.id === 1) {
-          wx.showModal({
-            title: '提交成功',
-            content: '感谢你的参与！',
-            success: function (res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
-          })
-        } else {
-          wx.showModal({
-            title: '系统繁忙，请你稍后再试...',
-            content: '感谢你的参与！'
-          })
-        }
-      },
-      fail: function () {
-        wx.hideLoading();
-        wx.showModal({
-          title: '系统繁忙，请稍后再试...',
-          content: '感谢你的参与！'
-        })
-      }
-    })
+    rate(wafer, sendData).catch(console.log);
   },
 });

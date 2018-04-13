@@ -1,4 +1,5 @@
-var app = getApp()
+var rate = require('../../utils/common.js').rate;
+var app = getApp();
 var wafer = app.globalData.wafer;
 var rateMap = new Map([[1, "非常不满意"], [2, "不满意"], [3, "一般"], [4, "满意"], [5, "非常满意"]]);
 var checkbox4 = [
@@ -93,7 +94,6 @@ Page({
 
   //submit data to server
   submitRate: function (e) {
-
     var sendData = e.detail.value;
     sendData.star = this.data.rate;
     sendData.respondents = "dkservice"
@@ -108,42 +108,21 @@ Page({
       })
     } else {
       //notice user that is sunbmiting data
-      wx.showLoading({ title: '正在提交数据...' });
-
-      wafer.request({
-        url: 'https://www.xingshenxunjiechuxing.com/rate/dksale',
-        data: { data: sendData },
-        dataType: "json",
-        header: { 'content-type': 'application/json' },// 默认值
+      wx.showModal({
+        title: '活动通知',
+        content: '是否参与调查有礼活动？',
         success: function (res) {
-          console.log(res.data);
-          wx.hideLoading();
-
-          if (res.data.id === 1) {
-            wx.showModal({
-              title: '提交成功',
-              content: '感谢你的参与！',
-              success: function (res) {
-                if (res.confirm) {
-                  console.log('用户点击确定')
-                } else if (res.cancel) {
-                  console.log('用户点击取消')
-                }
-              }
-            })
-          } else {
-            wx.showModal({
-              title: '系统繁忙，请你稍后再试...',
-              content: '感谢你的参与！'
-            })
+          if (res.confirm) {
+            console.log('用户点击确定');
+            app.globalData.rateSendData = sendData;
+            wx.navigateTo({
+              url: '../phone-form/phone-form'
+            });
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+            wx.showLoading({ title: '正在提交数据...' });
+            rate(wafer, { data: sendData }).catch(console.log);
           }
-        },
-        fail: function () {
-          wx.hideLoading();
-          wx.showModal({
-            title: '系统繁忙，请稍后再试...',
-            content: '感谢你的参与！'
-          })
         }
       })
     }

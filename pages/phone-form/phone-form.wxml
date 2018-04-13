@@ -1,8 +1,8 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__hd">
-    <view class="page__title">请填写会员资料</view>
+    <view class="page__title">请填写相关信息</view>
     <view class="page__desc">
-      <text style="color:red">红色字</text>为必填项，我们推荐你填写所有信息以方便兑换奖品和服务</view>
+      <text style="color:red">红色字</text>为必填项，你填写的所有信息仅用于方便兑换我们提供的奖品和服务</view>
   </view>
   <form report-submit="true" bindsubmit="submitUserInfo">
     <view class="page_bd">
