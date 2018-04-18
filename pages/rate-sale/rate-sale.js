@@ -19,7 +19,10 @@ Page({
     rate: { id: 0, text: '' },
     checkbox: currentCheckboxs,
     radios: [{ value: "愿意推荐", checked: false, label: "是" }, { value: "不愿意推荐", checked: false, label: "否" }],
-    showCheckboxs: false
+    showCheckboxs: false,
+    notic: "请对我们的服务做出评价",
+    text2: "您对以下哪些地方不满意？",
+    showText2: true
   },
 
   onShareAppMessage: function () {
@@ -29,6 +32,18 @@ Page({
     }
   },
 
+  onLoad: function (op) {
+    let that = this;
+    wafer.request({
+      url: 'https://www.xingshenxunjiechuxing.com/rate/init',
+      data: { id: 'sale' },
+      success: res => {
+        console.log(res);
+        that.setData({ notic: res.data.notic });
+      }
+    });
+  },
+
   // event for star changed
   handleChange: function (e) {
     var r = e.detail.value;
@@ -36,14 +51,24 @@ Page({
       currentCheckboxs = checkbox5;
       this.setData({
         rate: { id: r, text: rateMap.get(r) },
-        checkbox: currentCheckboxs
+        checkbox: currentCheckboxs,
+        showText2: false
       });
-    } else {
+    } else if (r === 4) {
+      this.setData({
+        rate: { id: r, text: rateMap.get(r) },
+        checkbox: currentCheckboxs,
+        text2: "您觉得以下哪些地方还需要改进?"
+      });
+    }
+    else {
       currentCheckboxs = checkbox4;
       this.setData({
         rate: { id: r, text: rateMap.get(r) },
         checkbox: currentCheckboxs,
-        showCheckboxs: true
+        showCheckboxs: true,
+        text2: "您对以下哪些地方不满意？",
+        showText2: true
       });
     }
   },

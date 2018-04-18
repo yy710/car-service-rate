@@ -1,10 +1,12 @@
 <view class="page">
   <view class="page__hd">
     <view class="page__title">售后满意度调查</view>
-    <view class="page__desc">请对我们的售后服务做出评价</view>
+    <view class="page__desc"><text>{{notic}}</text></view>
+
   </view>
   <form report-submit='{{true}}' bindsubmit='submitRate' name="rateForm">
     <view class="page__bd page__bd_spacing page__desc">
+
       <view class="weui-flex">
         <view class="weui-flex__item">
           <view class="placeholder2">
@@ -12,6 +14,7 @@
           </view>
         </view>
       </view>
+
       <view class="weui-flex">
         <view class="weui-flex__item">
           <view class="placeholder">
@@ -20,7 +23,17 @@
         </view>
       </view>
 
-      <checkbox-group bindchange="checkboxChange" name="rateCheckbox" wx:if="{{showCheckboxs}}">
+      <block  wx:if="{{showCheckboxs}}">
+
+      <view class="weui-flex wux-filterbar__groups" style="background:#999999;margin:0px 0px 0px 0px" wx:if="{{showText2}}">
+          <view class="weui-flex__item wux-filterbar__group">
+            <view style="color:white;text-align: center;margin-top:5px;font-size:14px;line-height: 1em">
+              <text>{{text2}}</text>
+            </view>
+          </view>
+        </view>
+
+      <checkbox-group bindchange="checkboxChange" name="rateCheckbox">
         <view class="weui-flex wux-filterbar__groups" wx:for="{{checkbox}}" wx:for-item="flex" wx:for-index="idx" wx:key="">
           <view class="weui-flex__item wux-filterbar__group" wx:for="{{flex}}" wx:key="">
             <view class="placeholder">
@@ -31,10 +44,20 @@
         </view>
       </checkbox-group>
 
-      <radio-group name="rateRadio" bindchange="onRadioChange" wx:if="{{showCheckboxs}}">
-        <view class="weui-flex wux-filterbar__groups">
+       <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder2">
+            <input class="" placeholder="其他想说的请告诉我们..." name="rateInput" />
+          </view>
+        </view>
+      </view>
+
+       </block>
+
+      <radio-group name="rateRadio" bindchange="onRadioChange">
+        <view class="weui-flex wux-filterbar__groups" style="background:#999999;margin:0px 0px 0px 0px">
           <view class="weui-flex__item wux-filterbar__group">
-            <view style="color:red;text-align: center;margin-top:5px;font-size:14px">
+            <view style="color:white;text-align: center;margin-top:5px;font-size:14px;line-height: 1em">
               <text>您是否会向您的朋友推荐我们？</text>
             </view>
           </view>
@@ -48,15 +71,8 @@
           </view>
         </view>
       </radio-group>
-
-      <view class="weui-flex">
-        <view class="weui-flex__item">
-          <view class="placeholder2">
-            <input class="weui-input" placeholder="其他想说的请告诉我们..." name="rateInput" />
-          </view>
-        </view>
-      </view>
-      <view class="weui-flex">
+      
+      <view class="weui-flex" style="margin-top: 5px">
         <view class="weui-flex__item">
           <view class="placeholder">
             <button class="weui-btn" type="primary" style='font-size:14px;' form-type='submit'>提交</button>

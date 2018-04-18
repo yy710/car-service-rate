@@ -7,17 +7,20 @@
 @import 'style/weui.wxss';
 @import 'style/wux.wxss'
 
-page{
+page {
     background-color: #F8F8F8;
     font-size: 16px;
     font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
 }
+
 .page__hd {
-    padding: 30px;
+    padding: 20px;
 }
+
 .page__bd {
     padding-bottom: 10px;
 }
+
 .page__bd_spacing {
     padding-left: 15px;
     padding-right: 15px;
@@ -50,8 +53,8 @@ page{
 }
 
 .placeholder2{
-    margin: 1px;
-    padding: 8px 5px;
+    margin-top: 5px;
+    padding: 5px 5px;
     text-align: center;
     background-color: #EBEBEB;
     height: 2.3em;
