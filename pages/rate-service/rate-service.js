@@ -3,9 +3,9 @@ var app = getApp();
 var wafer = app.globalData.wafer;
 var rateMap = new Map([[1, "非常不满意"], [2, "不满意"], [3, "一般"], [4, "满意"], [5, "非常满意"]]);
 var checkbox4 = [
-  [{ value: "服务顾问态度良好", checked: false }, { value: " 维修保养项目解释清楚", checked: false }],
-  [{ value: "维修保养耗时合理", checked: false }, { value: "与您一同检查完成项目", checked: false }],
-  [{ value: "您反映的问题都已解决", checked: false }, { value: " 收银员服务态度良好", checked: false }]
+  [{ value: "服务顾问态度不好", checked: false }, { value: " 维修保养项目解释不清楚", checked: false }],
+  [{ value: "维修保养耗时过长", checked: false }, { value: "未与您一同检查完成项目", checked: false }],
+  [{ value: "您反映的问题未能全部解决", checked: false }, { value: " 收银员服务态度不好", checked: false }]
 ];
 var checkbox5 = [
   [{ value: "细致周到", checked: false }, { value: "有求必应", checked: false }],

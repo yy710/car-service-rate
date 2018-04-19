@@ -3,9 +3,9 @@ var app = getApp();
 var wafer = app.globalData.wafer;
 var rateMap = new Map([[1, "非常不满意"], [2, "不满意"], [3, "一般"], [4, "满意"], [5, "非常满意"]]);
 var checkbox4 = [
-  [{ value: "销售顾问服务态度良好", checked: false }, { value: "产品与费用介绍详细", checked: false }],
-  [{ value: "交车时与您一同验车", checked: false }, { value: "提醒注意事项介绍售后服务", checked: false }],
-  [{ value: "您提出的问题都已得到解答", checked: false }, { value: "收银员服务态度良好", checked: false }]
+  [{ value: "销售顾问服务态度不好", checked: false }, { value: "产品与费用介绍不清楚", checked: false }],
+  [{ value: "交车时未与您一同验车", checked: false }, { value: "未说明注意事项及售后服务", checked: false }],
+  [{ value: "您的疑问未能全部解答", checked: false }, { value: "收银员服务态度不好", checked: false }]
 ];
 var checkbox5 = [
   [{ value: "礼貌体贴", checked: false }, { value: "热情周到", checked: false }],

@@ -44,10 +44,10 @@
         </view>
       </checkbox-group>
 
-       <view class="weui-flex">
-        <view class="weui-flex__item">
-          <view class="placeholder2">
-            <input class="" placeholder="其他想说的请告诉我们..." name="rateInput" />
+       <view class="weui-flex weui-flex wux-filterbar__groups">
+        <view class="weui-flex__item wux-filterbar__group">
+          <view class="placeholder">
+            <input class="wux-filterbar__btn" placeholder="其他想说的请告诉我们..." name="rateInput" />
           </view>
         </view>
       </view>
