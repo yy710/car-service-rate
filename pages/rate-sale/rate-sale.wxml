@@ -58,7 +58,7 @@
         <view class="weui-flex wux-filterbar__groups" style="background:#999999;margin:0px 0px 0px 0px">
           <view class="weui-flex__item wux-filterbar__group">
             <view style="color:white;text-align: center;margin-top:5px;font-size:14px;line-height: 1em">
-              <text>您是否会向您的朋友推荐我们？</text>
+              <text>您愿意向您的朋友推荐我们？</text>
             </view>
           </view>
         </view>
